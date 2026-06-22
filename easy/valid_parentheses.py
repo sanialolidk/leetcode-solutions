@@ -3,11 +3,12 @@ class Solution:
         stack = []
         pairs = {")": "(", "}": "{", "]": "["}
 
-        for c in s:
-            if c in pairs:
-                if not stack or stack.pop() != pairs[c]:
+        for ch in s:
+            if ch in pairs:
+                if len(stack) == 0 or stack[-1] != pairs[ch]:
                     return False
+                stack.pop()
             else:
-                stack.append(c)
+                stack.append(ch)
 
         return len(stack) == 0
